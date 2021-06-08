@@ -10,6 +10,14 @@
 <body>
     <div id="container" class="hidden">
         <h1>Tic Tac Toe</h1>
+         
+        <div id="start-menu">
+            <h2>Menú</h2>
+            <input id="st1" class="st-b" type="text" placeholder="Player 1 name">
+            <input id="st2" class="st-b" type="text" placeholder="Player 2 name">
+            <button id="start-st" class="btn-st">Start</button>
+        </div>
+
         <div id="container-game" class="nothere">
             <div id="one" class="square none"></div>
             <div id="two" class="square none"></div>
@@ -23,9 +31,9 @@
         </div>
     </div>
     <div id="finals">
-        <p>Congrats, you have won!</p>
+        <p id="final-msg"></p>
         <div>
-            <button id="menu">Menú</button>
+            <button id="menu">Menu</button>
             <button id="pagain">Play again!</button>
         </div> 
     </div>
