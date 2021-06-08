@@ -8,34 +8,29 @@
 </head>
 
 <body>
-    <div id="container">
+    <div id="container" class="hidden">
         <h1>Tic Tac Toe</h1>
-
-            <div id="container-game">
-                <div id="one" class="square"></div>
-                <div id="two" class="square"></div>
-                <div id="three" class="square"></div>
-                <div id="four" class="square"></div>
-                <div id="five" class="square"></div>
-                <div id="six" class="square"></div>
-                <div id="seven" class="square"></div>
-                <div id="eigth" class="square"></div>
-                <div id="nine" class="square"></div>
-            </div>
-            <div id="valores">
-                <div id="user-t">
-                    <img  class="imgu" src="images/person.png">
-                    <p>Player 1</p>
-                </div>
-
-                <div id="pc-t">
-                    <p>Player 2</p>
-                    <img  class="imgu" src="images/person.png">
-                    
-                </div>
-            </div>
+        <div id="container-game" class="nothere">
+            <div id="one" class="square none"></div>
+            <div id="two" class="square none"></div>
+            <div id="three" class="square none"></div>
+            <div id="four" class="square none"></div>
+            <div id="five" class="square none"></div>
+            <div id="six" class="square none"></div>
+            <div id="seven" class="square none"></div>
+            <div id="eigth" class="square none"></div>
+            <div id="nine" class="square none"></div>
+        </div>
+    </div>
+    <div id="finals">
+        <p>Congrats, you have won!</p>
+        <div>
+            <button id="menu">Menú</button>
+            <button id="pagain">Play again!</button>
+        </div> 
     </div>
 
+    <script src="script.js"></script>
 </body>
 
 </html>
