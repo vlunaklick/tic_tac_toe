@@ -18,13 +18,16 @@ const gameBoard = (function(){
         [3,5,7]
     ];
 
-    const winState = function(turno){
+    const winState = function(turnos){
         let val;
         let cellA = Array.from(document.getElementsByClassName('square'));
-        if(turno == "O"){
+        if(turnos == "O"){
             val = "x"
         } else{
             val = "o"
+        }
+        if(turno == 10){
+            pFina.textContent =  `It's a draw`;
         }
         return winCondi.some((com)=>{
             return com.every(index=>{
@@ -68,9 +71,9 @@ const gameBoard = (function(){
         pFina.textContent = "";
     };
 
-    const winnerAnnounce = function(turno,playera,playerb){
+    const winnerAnnounce = function(turnoo,playera,playerb){
         let val;
-        if(turno == "O"){
+        if(turnoo == "O"){
             pFina.textContent =  `The winner is ${playera.name}`;
         } else{
             pFina.textContent =  `The winner is ${playerb.name}`;
