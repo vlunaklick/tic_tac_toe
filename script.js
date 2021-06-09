@@ -5,6 +5,33 @@ const gameBoard = (function(){
     const pFina = document.getElementById('final-msg');
     let turno = 1
 
+    let currState = [["","",""],["","",""],["","",""]]
+
+    const winCondi = [
+        [1,2,3],
+        [4,5,6],
+        [7,8,9],
+        [1,4,7],
+        [2,5,8],
+        [3,6,9],
+        [1,5,9],
+        [3,5,7]
+    ];
+
+    const winState = function(turno){
+        let val;
+        let cellA = Array.from(document.getElementsByClassName('square'));
+        if(turno == "O"){
+            val = "x"
+        } else{
+            val = "o"
+        }
+        return winCondi.some((com)=>{
+            return com.every(index=>{
+                return cellA[index-1].classList.contains(val);
+            });
+        });
+    };
 
     const marcaSign = function(player,button){
         if (player === "X"){
@@ -14,7 +41,7 @@ const gameBoard = (function(){
             button.classList.replace("none","o");
             turno += 1
         }
-    }
+    };
 
     const resetBoard = function(){
         buttonsB.forEach((button)=>{
@@ -41,7 +68,16 @@ const gameBoard = (function(){
         pFina.textContent = "";
     };
 
-    return {ocultarBoard, mostrarBoard,resetBoard,marcaSign,whoturno}
+    const winnerAnnounce = function(turno,playera,playerb){
+        let val;
+        if(turno == "O"){
+            pFina.textContent =  `The winner is ${playera.name}`;
+        } else{
+            pFina.textContent =  `The winner is ${playerb.name}`;
+        }
+    }
+
+    return {ocultarBoard, mostrarBoard,resetBoard,marcaSign,whoturno,winState,winnerAnnounce}
 })();
 
 const displayGame = (function(){
@@ -56,6 +92,8 @@ const displayGame = (function(){
         return {name,sign,turno}
     }
 
+    gameEnd = false;
+
     let player1;
     let player2;
 
@@ -63,9 +101,13 @@ const displayGame = (function(){
 
     buttonsD.forEach(function(button){
         button.addEventListener('click',function(){
-            if(button.classList[1] == "none"){
+            if(button.classList[1] == "none" && gameEnd == false){
                 gameBoard.marcaSign(gameBoard.whoturno(player1,player2),button);
-            }
+                if(gameBoard.winState(gameBoard.whoturno(player1,player2))){
+                    gameBoard.winnerAnnounce(gameBoard.whoturno(player1,player2),player1,player2,"nada");
+                    gameEnd = true
+                }
+            };
         });
     });
 
@@ -73,28 +115,31 @@ const displayGame = (function(){
 
     playAga.addEventListener('click', function(){
         gameBoard.resetBoard();
+        gameEnd = false;
     });
 
     const btnSt = document.getElementById('start-st');
     const menu = document.getElementById('start-menu')
 
     btnSt.addEventListener('click',function(){
-        if (inputSt.value != ""){
-            player1 = personFactory(inputSt.value,"X",1);
-        } else{
-            player1 = personFactory("Player 1","X",1);
+        if(!gameEnd){
+            if (inputSt.value != ""){
+                player1 = personFactory(inputSt.value,"X",1);
+            } else{
+                player1 = personFactory("Player 1","X",1);
+            }
+            if (inputStd.value != ""){
+                player2 = personFactory(inputStd.value,"O",2);
+            } else{
+                player2 = personFactory("Player 2","O",1);
+            }
+            inputStd.value = "";
+            inputSt.value = "";
+            gameBoard.resetBoard();
+            menu.style.display = "none";
+            gameBoard.mostrarBoard();
+            finals.style.display = "";
         }
-        if (inputStd.value != ""){
-            player2 = personFactory(inputStd.value,"O",2);
-        } else{
-            player2 = personFactory("Player 2","O",1);
-        }
-        inputStd.value = "";
-        inputSt.value = "";
-        gameBoard.resetBoard();
-        menu.style.display = "none";
-        gameBoard.mostrarBoard();
-        finals.style.display = "";
     });
 
     const menuP = document.getElementById('menu');
@@ -103,6 +148,7 @@ const displayGame = (function(){
         menu.style.display = "";
         finals.style.display = "none";
         gameBoard.ocultarBoard();
+        gameEnd = false
     })
 
     const inputSt = document.getElementById('st1');
