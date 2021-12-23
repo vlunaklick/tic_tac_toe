@@ -7,18 +7,12 @@
 
 ### ✨ [Live View](https://vlunaklick.github.io/tic_tac_toe/)
 
-### 🔧 Future Addons
-
-   * Play against IA.
-
-   * Better animations.
-
 ## Author
 
 👤 **vlunaklick**
 
 * Github: [@vlunaklick](https://github.com/vlunaklick)
-* LinkedIn: [@valentín-lunaklick](https://linkedin.com/in/valentín-lunaklick)
+* LinkedIn: [@vlunaklick](https://linkedin.com/in/vlunaklick)
 
 ## My Profile
 
