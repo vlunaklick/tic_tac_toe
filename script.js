@@ -3,13 +3,8 @@ const gameBoard = (function () {
 	const buttonsB = Array.from(document.getElementsByClassName('square'))
 	const pFina = document.getElementById('final-msg')
 	let finals = document.getElementById('finals')
+	let btnsPlay = document.getElementById('btns-playing')
 	let turno = 1
-
-	let currState = [
-		['', '', ''],
-		['', '', ''],
-		['', '', ''],
-	]
 
 	const winCondi = [
 		[1, 2, 3],
@@ -68,12 +63,14 @@ const gameBoard = (function () {
 		boardID.style.display = 'none'
 		turno = 1
 		pFina.textContent = ''
+		btnsPlay.style.display = 'none'
 	}
 
 	const mostrarBoard = function () {
 		boardID.style.display = ''
 		turno = 1
 		pFina.textContent = ''
+		btnsPlay.style.display = ''
 	}
 
 	const winnerAnnounce = function (turnoo, playera, playerb) {
@@ -132,6 +129,13 @@ const displayGame = (function () {
 		})
 	})
 
+	const playAgaN = document.getElementById('pagainN')
+
+	playAgaN.addEventListener('click', function () {
+		gameBoard.resetBoard()
+		gameEnd = false
+	})
+
 	const playAga = document.getElementById('pagain')
 
 	playAga.addEventListener('click', function () {
@@ -163,8 +167,15 @@ const displayGame = (function () {
 		}
 	})
 
-	const menuP = document.getElementById('menu')
+	const menuN = document.getElementById('menuN')
+	menuN.addEventListener('click', function () {
+		menu.style.display = ''
+		finals.classList.remove('showFinal')
+		gameBoard.ocultarBoard()
+		gameEnd = false
+	})
 
+	const menuP = document.getElementById('menu')
 	menuP.addEventListener('click', function () {
 		menu.style.display = ''
 		finals.classList.remove('showFinal')

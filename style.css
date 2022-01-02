@@ -228,6 +228,7 @@ button:hover{
     box-shadow: var(--shadow-elevation-medium);
     gap: 1rem;
     border: 1px solid #BCCCDC;
+    height: 16rem;
 }
 
 .st-b{
